@@ -1,0 +1,22 @@
+{
+  "name": "cucumber-cypress-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --spec cypress/integration/*.feature"
+  },
+  "keywords": [
+    "cucumber",
+    "gherkin",
+    "cypress",
+    "testing"
+  ],
+  "author": "julianny.alves@hotmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^3.2.0",
+    "cypress-cucumber-preprocessor": "^1.11.0"
+  }
+}

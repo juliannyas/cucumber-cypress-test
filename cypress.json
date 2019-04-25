@@ -1,0 +1,8 @@
+{
+	"video": false,
+	"baseUrl": "https://qa-web.tilix.com.br",
+	"trashAssetsBeforeRuns": false,
+	"viewportWidth": 1440,
+	"viewportHeight": 900,
+	"numTestsKeptInMemory": 1
+}
