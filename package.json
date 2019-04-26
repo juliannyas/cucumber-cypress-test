@@ -14,9 +14,12 @@
     "testing"
   ],
   "author": "julianny.alves@hotmail.com",
-  "license": "ISC",
+  "license": "Private",
   "devDependencies": {
     "cypress": "^3.2.0",
     "cypress-cucumber-preprocessor": "^1.11.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }

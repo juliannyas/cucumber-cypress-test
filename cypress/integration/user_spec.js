@@ -185,7 +185,7 @@ describe('Cadastro de Usuario', function () {
 			cy.get('p.text-danger').contains('Senha e confirmar senha não conferem.')
 		})
 
-		it('Verificar aceite dos termos de usu e politica de privacidade', function(){
+		it('Verificar aceite dos termos de uso e politica de privacidade', function(){
 			cy.get('button.btn.btn-default').click()
 			cy.get('p.text-danger').contains('Para continuar com o cadastro, deve aceitar os termos de uso.')
 		})

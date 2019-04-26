@@ -14,4 +14,7 @@ Feature: Logging on to the system
 
 	Examples:
 		| url | email | password | button |
-		| "https://qa-web.tilix.com.br/" | "test@tilix.com.br" | "test123" | "#btn_login" |
+		| "https://qa-web.tilix.com.br/" | "" | "test123" | "#btn_login" |
+		| "https://qa-web.tilix.com.br/" | "test@test.com" | "" | "#btn_login" |
+		| "https://qa-web.tilix.com.br/" | "" | "test123" | "#btn_login" |
+		| "https://qa-web.tilix.com.br/" | "test@test.com" | "password14" | "#btn_login" |

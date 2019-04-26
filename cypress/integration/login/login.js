@@ -1,14 +1,17 @@
+import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
+import LoginPage from '../../../pages/tilix/login-page';
+
 Given(`I open the {string}`, (url) => {
-    cy.visit(url)
+    LoginPage.visit(url);
  })
 
 When(`I enter a valid {string} and {string}`, (email, password) => {
-	cy.get('#email').type(email)
-	cy.get('#password').type(password)
+	LoginPage.typeEmail(email);
+	LoginPage.typePassword(password);
 })
 
 
 Then(`Access the system by clicking the {string}`, button => {
-	cy.get(button).click()
+	LoginPage.pressLogin();
 	cy.get('div.alert').should('note.have.class', 'alert-danger')
 })
