@@ -13,6 +13,8 @@ const BTN_NEXT = 'button[type=submit]';
 const EXPERIMENT_TEXT = 'EXPERIMENTE GRÁTIS';
 const CONTINUE_TEXT = 'CONTINUAR CADASTRO';
 const FINISH_TEXT = 'FINALIZAR CADASTRO';
+const WARNING = 'p[class=text-danger]';
+const REQUIRED_FIELD = 'Campo obrigatório.';
 
 class UserPage {
   
@@ -35,9 +37,9 @@ class UserPage {
       .type(query);
   }
 
-  static typeState(query) {
+  static selectState(query) {
     cy.get(STATE)
-      .type(query);
+      .select(query);
   }
 
   static typeName(query) {
@@ -91,6 +93,11 @@ class UserPage {
     cy.get(BTN_NEXT)
       .contains(FINISH_TEXT)
       .click();
+  }
+
+  static requiredField() {
+    cy.get(WARNING)
+    .contains(REQUIRED_FIELD)
   }
 }
 

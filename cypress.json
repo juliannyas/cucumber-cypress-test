@@ -2,7 +2,5 @@
 	"viewportWidth": 1440,
 	"viewportHeight": 900,
 	"ignoreTestFiles": "*.js",
-	"reporterOptions": {
-    	"mochaFile": "test-results/test-output-[hash].xml"
-  	}
+	"user-valid-access": 1
 }
