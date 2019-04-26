@@ -17,6 +17,6 @@ npm run cypress:open
 or (headlessly)
 
 ```
-npm run cypress:open
+npm run cypress:run
 
 ```
