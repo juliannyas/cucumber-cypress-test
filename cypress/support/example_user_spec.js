@@ -1,7 +1,27 @@
 describe('Cadastro de Usuario', function () {
+
+	const URL = 'https://qa-web.tilix.com.br/';
+	const EMAIL = '#email';
+	const IDENTIFIER = '#identifier';
+	const BIRTH_DATE = '#birth_date';
+	const STATE = '#state';
+	const NAME = '#name';
+	const FAMILY_NAME = '#family_name';
+	const PHONE_NUMBER = '#phone_number';
+	const LANDLINE_NUMBER = '#landline_number';
+	const PASSWORD = 'input[type=password]';
+	const CONFIRM_PASSWORD = '#confirm_password';
+	const AGREEMENT = '#agreement';
+	const BTN_NEXT = 'button[type=submit]';
+	const EXPERIMENT_TEXT = 'EXPERIMENTE GRÁTIS';
+	const CONTINUE_TEXT = 'CONTINUAR CADASTRO';
+	const FINISH_TEXT = 'FINALIZAR CADASTRO';
+	const WARNING = 'p[class=text-danger]';
+	const REQUIRED_FIELD = 'Campo obrigatório.';
+
   	
 	it('Acesso a tela de cadastro de usuário', function(){
-		cy.visit('/')
+		cy.visit(URL)
 		cy.location('pathname').should('eq', '/login')
 		cy.get('.info-before-login > a').click()
 		cy.location('pathname').should('eq', '/cadastro/etapa-1')
@@ -13,25 +33,24 @@ describe('Cadastro de Usuario', function () {
 		it('Não informar um email', function(){
 			cy.get('#email').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar um email inválido', function(){
 			cy.get('#email').clear().type('test@test')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('E-mail inválido.')
+			cy.contains('E-mail inválido.')
 		})
 
 		it('Informar um email já existente', function(){
 			cy.get('#email').clear().type('test@test.com')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('E-mail já existente.')
+			cy.contains('E-mail já cadastrado, clique aqui para efetuar seu login.')
 		})
 
 		it('Informar um email válido', function(){
-			cy.get('#email').clear().type('test2@test.com')
+			cy.get('#email').clear().type('testuser2@test.com')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('E-mail já existente.')
 			cy.location('pathname').should('eq', '/cadastro/etapa-2')
 		})
 	})
@@ -41,38 +60,40 @@ describe('Cadastro de Usuario', function () {
 		it('Não informar um CNPJ/CPF', function(){
 			cy.get('#identifier').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar um CNPJ/CPF no formato inválido', function(){
 			cy.get('#identifier').clear().type('1234567890123')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("CPF/CNPJ inválido.")
+			cy.contains("CPF/CNPJ inválido.")
 		})
 
 		it('Informar um CNPJ/CPF inválido para a Reeita Federal', function(){
 			cy.get('#identifier').clear().type('99999999999')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("CPF/CNPJ inválido.")
+			cy.contains("CPF/CNPJ inválido.")
 		})
 
 		it('Informar um CNPJ/CPF já existente', function(){
 			cy.get('#identifier').clear().type('15701333000115')
+			cy.get('#state').select('GO').should('have.value', 'GO')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("CPF/CNPJ inválido.")
+			cy.contains("CNPJ/CPF já cadastrado. Por favor, clique aqui para efetuar seu login.")
 		})
 
 		it('Não habilitar o campo data de nascimento ao informar um CNPJ', function(){
 			cy.get('#identifier').clear().type('15745664000157')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("CPF/CNPJ inválido.")
+			cy.contains("CPF/CNPJ inválido.")
 			cy.get('input').should('not.have.id', 'birth_date')
 		})
 
 		it('Habilitar o campo data de nascimento ao informar um CPF', function(){
 			cy.get('#identifier').clear().type('97345747107')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("CPF/CNPJ inválido.")
+			cy.contains('Campo obrigatório.')
+			cy.contains("Data de nascimento")
 			cy.get('input').should('have.id', 'birth_date')
 		})
 	})
@@ -82,19 +103,19 @@ describe('Cadastro de Usuario', function () {
 		it('Não informar uma Data de Nascimento', function(){
 			cy.get('#birth_date').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar uma Data de Nascimento inválida', function(){
 			cy.get('#birth_date').clear().type('1234')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Data de nascimento inválida.')
+			cy.contains('Data de nascimento inválida.')
 		})
 
 		it('Informar uma Data de Nascimento válida', function(){
 			cy.get('#birth_date').clear().type('12071996')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').should('not.have.value', 'Data de nascimento inválida.')
+			cy.get('.text-danger').should('not.have.value', 'Data de nascimento inválida.')
 		})
 	})
 
@@ -103,13 +124,13 @@ describe('Cadastro de Usuario', function () {
 		it('Não informar uma UF', function(){
 			cy.get('#state').select('')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar uma UF válida', function(){
 			cy.get('#state').select('GO').should('have.value', 'GO')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 			cy.location('pathname').should('eq', '/cadastro/etapa-3')
 		})
 	})
@@ -119,49 +140,49 @@ describe('Cadastro de Usuario', function () {
 		it('Não informar um Nome', function(){
 			cy.get('#name').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar um Nome com pelo menos 3 caracteres', function(){
 			cy.get('#name').type('ju')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("Deve conter no mínimo 3 caracteres.")
+			cy.contains("Deve conter no mínimo 3 caracteres.")
 		})
 
 		it('Não informar um Sobrenome', function(){
 			cy.get('#family_name').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar um Sobrenome com pelo menos 3 caracteres', function(){
 			cy.get('#family_name').type('ju')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains("Deve conter no mínimo 3 caracteres.")
+			cy.contains("Deve conter no mínimo 3 caracteres.")
 		})
 
 		it('Não informar um telefone Celular', function(){
 			cy.get('#phone_number').type('')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Informar um telefone Celular inválido', function(){
 			cy.get('#phone_number').type('123456')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Número inválido.')
+			cycontains('Número inválido.')
 		})
 
 		it('Não informar uma Senha de acesso', function(){
 			cy.get('input.form-control').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cycontains('Campo obrigatório.')
 		})
 
 		it('Não informar uma confirmação de Senha', function(){
 			cy.get('input#confirm_password.form-control').type(' ')
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Campo obrigatório.')
+			cy.contains('Campo obrigatório.')
 		})
 
 		it('Visualizar a senha informada', function(){
@@ -182,12 +203,12 @@ describe('Cadastro de Usuario', function () {
 		it('Informar uma confirmação de Senha diferente da Senha de acesso', function(){
 			cy.get('input.form-control').type('pass')
 			cy.get('input#confirm_password.form-control').type('word')
-			cy.get('p.text-danger').contains('Senha e confirmar senha não conferem.')
+			cycontains('Senha e confirmar senha não conferem.')
 		})
 
 		it('Verificar aceite dos termos de uso e politica de privacidade', function(){
 			cy.get('button.btn.btn-default').click()
-			cy.get('p.text-danger').contains('Para continuar com o cadastro, deve aceitar os termos de uso.')
+			cy.contains('Para continuar com o cadastro, deve aceitar os termos de uso.')
 		})
 
 
