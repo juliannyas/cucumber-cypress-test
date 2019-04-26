@@ -11,7 +11,7 @@ Feature: Validate access data
 		Given that I am in the third step of the user registry
 
 	@Name @FamilyName
-	Scenario: Do ​​not enter a value in the required field name
+	Scenario: Do not enter a value in the required field name
 		When you do not enter a value in the Name field
 		Then message Required field is displayed.
 
@@ -19,7 +19,7 @@ Feature: Validate access data
 		When entering the value "ju" in the name field
 		Then the message Must contain at least 3 characters.
 
-	Scenario: Do ​​not enter a value in the required field last name
+	Scenario: Do not enter a value in the required field last name
 		When you do not enter a value in the last name field
 		Then message Required field is displayed.
 
@@ -28,7 +28,7 @@ Feature: Validate access data
 		Then the message Must contain at least 3 characters.
 
 	@NumberCall
-	Scenario: Do ​​not enter a value in the required mobile field
+	Scenario: Do not enter a value in the required mobile field
 		When you do not enter a value in the Mobile field
 		Then message Required field is displayed.
 
@@ -41,11 +41,11 @@ Feature: Validate access data
 		Then message Invalid Number is displayed.
 
 	@Password
-	Scenario: Do ​​not enter a value in the required password field
+	Scenario: Do not enter a value in the required password field
 		When not entering a value in the "password"
 		Then message Required field is displayed.
 
-	Scenario: Do ​​not enter a value in the required password confirmation field
+	Scenario: Do not enter a value in the required password confirmation field
 		When you do not enter a value in the Password Confirmation field
 		Then message Required field is displayed.
 
@@ -63,6 +63,6 @@ Feature: Validate access data
 		And enter the value "PassWord" in the password confirmation field
 		Then the message Password and confirm password do not match.
 
-	Cenario: Verify acceptance of the terms of use and privacy policy
+	Scenario: Verify acceptance of the terms of use and privacy policy
 		When you click FINISH REGISTRATION
 		Then the message To continue with the registration, you must accept the terms of use.
