@@ -14,3 +14,9 @@ To run the test suite, simply give the following command:
 npm run cypress:open
 
 ```
+or (headlessly)
+
+```
+npm run cypress:open
+
+```
