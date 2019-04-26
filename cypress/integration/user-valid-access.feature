@@ -1,68 +1,68 @@
-#language:pt
+#language: en
 
 @Access
-Funcionalidade: Validar dados de acesso
+Feature: Validate access data
 
-	Como um usuário
-	Desejo validar a inserção de dados nos campos Nome, Sobrenome, Celular, Senha e Termos de Uso
-	Para garantir a integridade do cadastro de usuário
+	As a user
+	I want to validate the data entry in the Name, Last Name, Phone, Password and Terms of Use fields
+	To ensure the integrity of the user registry
 
-	Contexto:
-		Dado que estou na terceira etapa do cadastro do usuário
-	
+	Background:
+		Given that I am in the third step of the user registry
+
 	@Name @FamilyName
-	Cenario: não informar um valor no campo obrigatório nome
-	 	Quando não informar um valor no campo nome
-	 	Então é apresentado a mensagem Campo obrigatório.
+	Scenario: Do ​​not enter a value in the required field name
+		When you do not enter a value in the Name field
+		Then message Required field is displayed.
 
-	Cenario: informar um nome com menos 3 caracteres
-	 	Quando informar o valor "ju" no campo nome
-	 	Então é apresentado a mensagem Deve conter no mínimo 3 caracteres.
+	Scenario: Enter a name of at least 3 characters
+		When entering the value "ju" in the name field
+		Then the message Must contain at least 3 characters.
 
-	Cenario: não informar um valor no campo obrigatório sobrenome
-	 	Quando não informar um valor no campo sobrenome
-	 	Então é apresentado a mensagem Campo obrigatório.
+	Scenario: Do ​​not enter a value in the required field last name
+		When you do not enter a value in the last name field
+		Then message Required field is displayed.
 
-	Cenario: informar um sobrenome com menos 3 caracteres
-	 	Quando informar o valor "as" no campo sobrenome
-	 	Então é apresentado a mensagem Deve conter no mínimo 3 caracteres.
+	Scenario: Enter a last name of at least 3 characters
+		When you enter the value "as" in the last name field
+		Then the message Must contain at least 3 characters.
 
 	@NumberCall
-	Cenario: não informar um valor no campo obrigatório celular
-	 	Quando não informar um valor no campo Celular
-	 	Então é apresentado a mensagem Campo obrigatório.
+	Scenario: Do ​​not enter a value in the required mobile field
+		When you do not enter a value in the Mobile field
+		Then message Required field is displayed.
 
-	Cenario: informar um celular no formato inválido
-	 	Quando informar o valor "6299381" no campo Celular
-	 	Então é apresentado a mensagem Número inválido.
+	Scenario: Report a cell phone in invalid format
+		When entering the value "6299381" in the Mobile field
+		Then message Invalid Number is displayed.
 
-	Cenario: informar um fixo no formato inválido
-	 	Quando informar o valor "6299381" no campo Fixo
-	 	Então é apresentado a mensagem Número inválido.
+	Scenario: Report a fixed in invalid format
+		When entering the value "6299381" in the Fixed field
+		Then message Invalid Number is displayed.
 
-@Password
-	Cenario: não informar um valor no campo obrigatório senha
-	 	Quando não informar um valor no campo "password"
-	 	Então é apresentado a mensagem Campo obrigatório.
+	@Password
+	Scenario: Do ​​not enter a value in the required password field
+		When not entering a value in the "password"
+		Then message Required field is displayed.
 
-	Cenario: não informar um valor no campo obrigatório confirmação de senha
-	 	Quando não informar um valor no campo confirmação de senha
-	 	Então é apresentado a mensagem Campo obrigatório.
+	Scenario: Do ​​not enter a value in the required password confirmation field
+		When you do not enter a value in the Password Confirmation field
+		Then message Required field is displayed.
 
-	Cenario: visualizar a senha informada
-	 	Quando informar o valor "pass" no campo senha
-	 	E clicar em "Ver"
-	 	Então é apresentado o valor "pass" no campo senha
+	Scenario: view the entered password
+		When entering the value "pass" in the password field
+		And click "View"
+		Then the value "pass" is displayed in the password field
 
-	Cenario: visualizar a barra de força da senha
-	 	Quando informar o valor "Pass123Word!" no campo senha
-	 	Então é apresentado a mensagem forte
+	Scenario: view the password strength bar
+		When you enter the value "Pass123Word!" in the password field
+		Then the strong message is presented
 
-	Cenario: informar uma confirmação de senha diferente da senha de acesso
-	 	Quando informar o valor "Pass123Word!" no campo senha
-	 	E informar o valor "PassWord" no campo confirmação de senha
-	 	Então é apresentado a mensagem Senha e confirmar senha não conferem.
+	Scenario: Enter a password confirmation different from the access password
+		When you enter the value "Pass123Word!" in the password field
+		And enter the value "PassWord" in the password confirmation field
+		Then the message Password and confirm password do not match.
 
-	Cenario: verificar aceite dos termos de uso e politica de privacidade
-	 	Quando clicar em FINALIZAR CADASTRO
-	 	Então é apresentado a mensagem Para continuar com o cadastro, deve aceitar os termos de uso.
+	Cenario: Verify acceptance of the terms of use and privacy policy
+		When you click FINISH REGISTRATION
+		Then the message To continue with the registration, you must accept the terms of use.
