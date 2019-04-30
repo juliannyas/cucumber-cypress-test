@@ -13,7 +13,7 @@ const BTN_NEXT = 'button[type=submit]';
 const EXPERIMENT_TEXT = 'EXPERIMENTE GRÁTIS';
 const CONTINUE_TEXT = 'CONTINUAR CADASTRO';
 const FINISH_TEXT = 'FINALIZAR CADASTRO';
-const WARNING = 'p[class=text-danger]';
+const WARNING_FIELD = 'p[class=text-danger]';
 const REQUIRED_FIELD = 'Campo obrigatório.';
 
 class UserPage {
@@ -24,16 +24,19 @@ class UserPage {
 
   static typeEmail(query) {
     cy.get(EMAIL)
+      .clear()
       .type(query);
   }
 
   static typeIdentifier(query) {
     cy.get(IDENTIFIER)
+      .clear()
       .type(query);
   }
 
   static typeBirthDate(query) {
     cy.get(BIRTH_DATE)
+      .clear()
       .type(query);
   }
 
@@ -44,31 +47,37 @@ class UserPage {
 
   static typeName(query) {
     cy.get(NAME)
+      .clear()
       .type(query);
   }
 
   static typeFamilyName(query) {
     cy.get(FAMILY_NAME)
+      .clear()
       .type(query);
   }
 
   static typePhoneNumber(query) {
     cy.get(PHONE_NUMBER)
+      .clear()
       .type(query);
   }
 
   static typeLandlineNumber(query) {
     cy.get(LANDLINE_NUMBER)
+      .clear()
       .type(query);
   }
 
   static typePassword(query) {
     cy.get(PASSWORD)
+      .clear()
       .type(query);
   }
 
   static typeConfirmPassword(query) {
     cy.get(CONFIRM_PASSWORD)
+      .clear()
       .type(query);
   }
 
@@ -96,8 +105,13 @@ class UserPage {
   }
 
   static requiredField() {
-    cy.get(WARNING)
+    cy.get(WARNING_FIELD)
     .contains(REQUIRED_FIELD)
+  }
+
+  static showWarning(warning) {
+    cy.get(WARNING_FIELD)
+    .contains(warning)
   }
 }
 
