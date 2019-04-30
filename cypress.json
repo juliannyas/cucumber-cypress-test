@@ -1,6 +1,5 @@
 {
 	"viewportWidth": 1440,
 	"viewportHeight": 900,
-	"ignoreTestFiles": "*.js",
 	"user-valid-access": 1
 }
