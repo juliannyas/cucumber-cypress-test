@@ -16,11 +16,11 @@ Feature: Validate emails
 		Then message Required field is displayed.
 
 	Scenario: Inform an email in invalid format
-		When entering the test@test value in the email field
+		When entering the "test@test" value in the email field
 		When you click on TRY FREE
 		Then Invalid Email appears.
 
 	Scenario: inform an existing email
-		When you enter the value test@test.com in the email field
+		When you enter the value "test@test.com" in the email field
 		When you click on TRY FREE
 		Then the message E-mail already registered is displayed, click here to log in.
